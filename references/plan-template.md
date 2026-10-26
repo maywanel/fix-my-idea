@@ -1,80 +1,92 @@
 # Final plan structure
 
-Use these sections in `FIXED_IDEA.md`. Scale detail to the idea; mark genuinely
-inapplicable items with a reason. Do not fill gaps with invented certainty.
+Use all eleven sections in `FIXED_IDEA.md`; mark inapplicable items with reasons.
+Lead with a one-paragraph recommendation, revised idea, and review completeness.
+QUICK: target 600–900 words within 6,500 characters; STANDARD: 1,200–2,000 within
+14,000 characters; DEEP: up to 22,000 characters with detailed linked records.
+A budget-limited report may be shorter but must disclose missing evidence/reviews.
 
-## Recommendation and revised idea
+## 1. Original idea summary
 
-State the recommendation and describe the revised idea in one paragraph: for whom,
-which problem, what is offered, how it reaches users, how delivery works, and how
-it is funded or earns revenue. State what remains unproven.
+User objective, beneficiary/buyer, constraints, and strengths worth preserving.
+Distinguish provided facts from inferred assumptions.
 
-## Original → revised
+## 2. Critical weaknesses
 
-| Original choice | Revised choice | Why it changes | Tradeoff | Issue IDs |
-| --- | --- | --- | --- | --- |
+Prioritized risk register: ID, trigger → mechanism → outcome, severity, evidence
+IDs, dependencies, and conditions under which to stop. Do not imply exhaustive
+coverage. Address contradictory evidence as well as supportive evidence.
 
-Identify the user objective and strengths preserved. Label any pivot requiring a
-change to a non-negotiable as an alternative, not an adopted decision.
+## 3. Proposed repairs
 
-## Why it could work
+Every major recommendation must supply these fields, in prose or a compact table:
 
-Explain the customer value, advantage over current alternatives, practical adoption
-path, and sustainability mechanism. Separate supporting evidence from hypotheses.
+| Issue / original problem | Proposed change | Why it helps | Evidence or reasoning | Implementation cost / difficulty | Remaining risk | Test |
+| --- | --- | --- | --- | --- | --- | --- |
 
-## Failure modes and repairs
+Keep traceable risk → repair → test links. Explain original → revised choices,
+tradeoffs, and preserved strengths. Do not use generic advice such as “validate
+market demand” without the specific assumption, experiment, and decision gate.
 
-| ID | Failure mechanism | Severity and evidence | Repair | Residual risk | Validation |
+## 4. Revised product or system concept
+
+For whom, which problem, what is offered, delivery/reach, differentiation from
+alternatives, and funding/revenue where relevant. Explain why it could work and
+what is still hypothetical. Describe the smallest useful pilot: participants,
+narrow use case, included capabilities, exclusions, delivery/recruitment path,
+and what can be manual. A larger pivot changing non-negotiables remains an
+alternative requiring agreement, never a silently adopted objective.
+
+## 5. Technical feasibility
+
+Buildability, architecture where relevant, dependencies, capacity, reliability,
+safety/trust, operational delivery and staffing needs. Explain technical unknowns
+and cheap feasibility tests. For nontechnical ideas assess practical delivery.
+
+## 6. Commercial feasibility, when applicable
+
+Buyer, procurement, acquisition, competition, funding/pricing and cost model.
+Preserve the v1 economics analysis: one-time/recurring costs, founder labor, cash,
+capacity, units/time periods, formulas and break-even conditions. Use downside,
+base and upside scenarios only if informative; label unknown inputs and show how
+to obtain them. Distinguish estimates from quotes and scenarios from measurements.
+For community projects discuss funding/sustainability, or explain non-applicability.
+
+## 7. Tradeoffs and unresolved disagreements
+
+List material decisions, competing claims, costs and dissent with issue IDs.
+Summarize each selected seat's final advisory status and conditions; in QUICK
+mark specialist validation not scheduled. Identify unavailable seats, skipped
+reviews, invalid artifacts, shared-context limitations, and external expertise
+needed. Link DISCUSSION and completed debates. A blocker cannot be outvoted.
+
+## 8. Assumptions requiring validation
+
+Assumption IDs, supporting/contradictory evidence, confidence and basis, and the
+cheapest next informative test. Separate unknowns from verified claims. Include
+no-browsing limitations and proposed checks when relevant.
+
+## 9. Prioritized action plan
+
+| Phase / priority | Deliverable or experiment | Owner role | Dependencies | Cost / time estimate | Continue / change / stop gate |
 | --- | --- | --- | --- | --- | --- |
 
-Prioritize existential risks and dependency chains. Include conditions under which
-the team should stop. This is the consequential risk register, not a claim that
-every possible failure has been anticipated.
+Test existential risks early and cheaply. Include a feasible first week and later
+milestones, using 30/60/90 days only when appropriate. Distinguish validation from
+rollout; larger investments depend on passed gates. Assign roles, not invented
+employees or commitments. Name one first action possible with current resources.
 
-## Smallest useful pilot
+## 10. Measurable success criteria
 
-Define target participant or customer, narrow use case, included capabilities,
-explicit exclusions, delivery method, recruitment path, and success criteria.
-Explain what can be done manually before investing in infrastructure or scale.
+For each key experiment: metric, observation period/sample, proposed threshold,
+threshold basis, and decision it changes. Label provisional targets explicitly.
+Discuss sample limitations; a small pilot is not proof of a market.
 
-## Validation plan
+## 11. Final recommendation
 
-| Assumption / issue | Experiment | Owner role | Cost and time estimate | Metric and threshold | Continue / change / stop decision |
-| --- | --- | --- | --- | --- | --- |
-
-Order tests by what could invalidate the idea soonest and most cheaply. Justify
-thresholds; label proposed targets as provisional when no baseline exists. Explain
-sample or observation limitations and avoid treating a small pilot as market proof.
-
-## Economics and resources
-
-Give the relevant revenue/funding and cost model, key formulas, resource needs,
-and plausible downside/base/upside scenarios if useful. Distinguish one-time and
-recurring costs, cash needs, capacity constraints, and founder labor. State units,
-time periods, assumptions, and break-even conditions where applicable. Ensure
-arithmetic and units agree. If inputs are unknown, show the model and how to
-obtain them instead of presenting fabricated forecasts.
-
-## Execution roadmap
-
-Use phases appropriate to the domain, with a concrete first week and subsequent
-milestones. Use 30/60/90 days only if realistic; regulated or physical products
-may require a different horizon.
-
-| Phase / milestone | Deliverable | Owner role | Dependencies | Effort / budget range | Exit gate |
-| --- | --- | --- | --- | --- | --- |
-
-Distinguish a validation roadmap from a full rollout. Tie larger investments to
-passed gates and specify the first action the user can take with current resources.
-
-## Specialist review and unresolved decisions
-
-List all 12 seats, final advisory status, and conditions. Preserve material dissent,
-unavailable seats, shared-context limitations, open questions for the user, and
-decisions that need external expertise or empirical evidence.
-
-## Evidence and working records
-
-Link supporting sources and local brief, roster, and discussion. Include a compact
-assumptions list. The reader should be able to trace critical recommendations back
-to an issue, evidence, and the resulting decision.
+Proceed to validation / proceed with conditions / pivot with agreement / pause.
+Explain what must change if no viable repair fits the constraints. State unresolved
+critical dependencies, incomplete work, and why the evidence supports this outcome.
+Link BRIEF, ROSTER, RESEARCH, discussion/debates, revisions/reviews, and STATUS.
+Report mode, budget target, estimated/accounted usage, measurement limitations,
+and any overrun. No guarantee of success or fabricated consensus.

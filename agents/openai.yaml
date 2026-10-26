@@ -1,4 +1,4 @@
 interface:
   display_name: "Fix My Idea"
-  short_description: "12 specialists debate, repair, and plan your idea"
-  default_prompt: "Use $fix-my-idea to convene 12 relevant specialists, challenge and repair my idea, and deliver a realistic validation and execution plan."
+  short_description: "Repair ideas with a budget-aware specialist team"
+  default_prompt: "Use $fix-my-idea in standard mode to challenge and repair my idea, and deliver a realistic validation and execution plan."

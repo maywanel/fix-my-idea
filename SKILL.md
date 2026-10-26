@@ -1,132 +1,103 @@
 ---
 name: fix-my-idea
 description: >-
-  Repair and develop an idea through a company strategy meeting of 12 relevant
-  specialists. Use when the user wants a cross-functional debate that identifies
-  failure modes, preserves strengths, redesigns the idea, and produces a realistic
-  validation and execution plan. Also responds to requests for an idea boardroom
-  or a fix-my-idea meeting; not a courtroom verdict or a routine brainstorming task.
+  Repair and develop an idea through a collaborative meeting of domain-relevant
+  specialists. Use for an idea boardroom, cross-functional repair, or a realistic
+  validation and execution plan. Offers quick, standard, and deep modes; not a
+  courtroom verdict or a request to implement the proposed business.
 ---
 
-# Fix My Idea
+# Fix My Idea — v2.0
 
-Act as the facilitator of a company working meeting with exactly **12 specialist
-seats**, selected for the actual idea. The facilitator is not a thirteenth voting
-specialist. The meeting's purpose is to produce a better, testable idea and a
-structured path to execution—not to perform agreement or merely judge the pitch.
+Facilitate a working meeting that preserves strengths, identifies failure
+mechanisms, debates useful repairs, and produces a stronger, testable idea.
+The facilitator is not a voting specialist. Never manufacture agreement or
+silently replace the user's objective.
 
-Invoke with `$fix-my-idea <idea>` or a plain-language request. If omitted, use the
-most recent identifiable idea in the conversation. If none exists, ask for it.
-Never treat placeholder invocation text as an idea.
+## Establish the brief and mode
 
-## 1. Establish the brief
+Accept `$fix-my-idea <idea>` and plain language. Default to **STANDARD**.
+Interpret `--mode quick|standard|deep` and `--budget <positive integer>` in the
+prompt as user preferences, not Codex CLI flags. Natural language is equivalent.
+If the idea is omitted, use the most recent identifiable idea; otherwise ask.
+Never evaluate placeholder text as an idea.
 
-Capture the original idea, intended beneficiary and buyer, problem, desired
-outcome, geography, stage, available resources, timeline, and non-negotiables.
-Preserve supplied facts and distinguish them from assumptions. Ask only for
-missing information that materially changes the direction; otherwise proceed
-with explicit working assumptions. Do not silently replace the user's objective.
+| Mode | Perspectives | Assessment | Debate | Revision / validation | Suggested total tokens |
+| --- | ---: | --- | --- | --- | ---: |
+| QUICK | 3 | One independent round | None | One proposal; at most one revision, facilitator check | 8,000 |
+| STANDARD (default) | 6 | One independent round | One focused exchange | One revision and all-seat validation | 25,000 |
+| DEEP | 12 | One independent round | Up to two issues per cycle | Up to two revisions, all-seat validation per cycle | 60,000 |
 
-Create a new run under `.fix-my-idea/<unique-run-id>/` in the user's workspace.
-Keep the brief, roster, specialist contributions, debate, and final plan there.
-Do not overwrite previous meetings. Use absolute paths in agent assignments.
-If filesystem tools are unavailable, deliver the same records in the conversation
-and disclose that no files were saved.
+Budgets are configurable planning targets, not enforceable runtime token caps.
+Tell the user the selected mode, target, expected rounds, and whether independent
+agents or a single-model simulation will be used. Do not silently upgrade modes.
 
-## 2. Seat the right 12 specialists
+Capture the original idea, beneficiary, buyer, problem, outcome, geography, stage,
+resources, timeline, and non-negotiables in `BRIEF.md`. Ask only for gaps that
+materially change direction; otherwise label working assumptions.
 
-Choose concrete specialties, not celebrity personas or generic executive titles.
-Start with the coverage below, then adapt and combine disciplines to make space
-for essential domain experts while retaining exactly 12 distinct seats.
+## Select the team and run the meeting
 
-| Seat | Starting specialty | Main responsibility |
-| --- | --- | --- |
-| 1 | Customer research | Pain, behavior, willingness to change, unmet needs |
-| 2 | Domain practitioner | How this problem is handled in the real world |
-| 3 | Product strategy | Smallest coherent offer, differentiation, scope |
-| 4 | Engineering or technical feasibility | Buildability, dependencies, technical limits |
-| 5 | Experience and service design | Adoption friction, usability, accessibility |
-| 6 | Market and competition | Alternatives, substitutes, market entry |
-| 7 | Distribution and growth | Reachable acquisition channels and channel economics |
-| 8 | Sales and partnerships | Buying process, procurement, conversion, partners |
-| 9 | Finance and business model | Pricing, margins, cash, funding needs, sustainability |
-| 10 | Operations and delivery | Capacity, reliability, support, supply chains |
-| 11 | Legal, safety, and trust | Applicable constraints and potential harms |
-| 12 | Experimentation and execution | Assumption testing, measurement, sequencing |
+Read [meeting-protocol.md](references/meeting-protocol.md) before execution;
+use [facilitator.md](references/facilitator.md) for ledger commands and recovery.
+The facilitator alone selects roles, authorizes work, allocates research, advances
+phases, and decides whether another permitted cycle is worthwhile. Specialists
+must not spawn agents, browse independently, extend assignments, or retry themselves.
 
-For example, a physical food product needs food safety and manufacturing expertise;
-a clinical product needs clinical and regulatory expertise. A community initiative
-may need governance, funding, and volunteer operations instead of sales and growth.
-Explain each seat's relevance and particular remit in `ROSTER.md`. Do not imply
-AI role assignments are licensed professionals or actual customer testimony.
+Select exactly 3, 6, or 12 distinct perspectives for the mode. Explain the reason
+and non-overlapping remit of each in `ROSTER.md`; use stable IDs S01 onward.
+Cover value to users, feasibility, and delivery/sustainability even in QUICK.
+Adapt to the actual domain rather than filling generic executive seats:
 
-## 3. Run the meeting
+- Cybersecurity STANDARD: Security Architect, Distributed Systems Engineer,
+  Backend Engineer, DevSecOps Engineer, Startup Strategist, Enterprise Security
+  Buyer. Distinguish threat model, scale, implementation, operations, business,
+  and procurement remits.
+- Mobile STANDARD: Mobile Engineer, UX Designer, Product Manager, Growth
+  Strategist, Security Engineer, Business Analyst.
+- AI STANDARD: ML Engineer, AI Safety Engineer, Infrastructure Engineer, Product
+  Strategist, Domain Expert, Customer Researcher.
 
-Use [meeting-protocol.md](references/meeting-protocol.md) for agent assignments,
-contribution formats, evidence handling, and recovery. Read it before starting.
+For QUICK combine complementary remits into three concrete specialties. For DEEP
+add missing disciplines using the original coverage: customer research, domain
+practice, product, engineering, experience, competition, distribution, sales,
+finance, operations, legal/safety/trust, experimentation. Replace sales with
+funding/governance for noncommercial work. AI roles are not actual customers or
+licensed professionals.
 
-An invocation authorizes specialist subagent work and local meeting documents,
-subject to the host's permissions. Use native agents when available. Respect
-capacity: 12 specialist seats do not require 12 simultaneous agents. Tell the user
-the execution mode and expected rounds. If independent agents are unavailable,
-use a clearly labeled single-model simulation; do not claim independent agreement.
+Create `.fix-my-idea/<unique-run-id>/` only for a new meeting. On continuation,
+inspect checkpoints first; never restart automatically. Use the Python ledger
+when available, with one writer: the facilitator. Its sequential schedule is the
+portable default. Independent agents can run sequentially in fresh contexts.
+Parallel execution is optional only with a host-supported reservation mechanism
+covering every in-flight task; this bundled ledger intentionally uses one task
+at a time. Do not bypass it to parallelize.
 
-### Round A — Independent assessment
+Research once into `RESEARCH.md`, then share the same brief and evidence with each
+opening specialist, without peer opinions. Rank disagreements by consequence and
+use only relevant owners and challengers. QUICK records debate as skipped.
+Synthesize the smallest repair that addresses critical mechanisms; retain a larger
+pivot as an alternative if it changes non-negotiables. Validate the revision as
+specified by mode. Never extend the round limits to achieve consensus.
 
-Give every specialist the same brief and their own remit, without peers' opening
-opinions. Each identifies strengths worth preserving, concrete failure mechanisms,
-assumptions, repairs, and cheap tests. Gather all 12 contributions before debate.
+At budget pressure stop new specialist work, skip optional debate, preserve
+completed contributions, and use the synthesis reserve for a useful partial report.
+Record gaps and the next executable step in `STATUS.md`.
 
-### Round B — Debate and repair
-
-Build an agenda from the most consequential disagreements and risks. Prioritize
-fatal dependencies, expensive or irreversible choices, and assumptions that could
-invalidate the core value proposition. Assign each material issue an owner and a
-challenger from a different relevant discipline.
-
-All 12 specialists participate. They must respond to specific claims from Round A,
-explain where they agree or disagree and why, propose workable changes, and expose
-the costs or new risks of those changes. Require owners to respond to challenges.
-Do not substitute twelve disconnected essays for an actual exchange of arguments.
-
-Record material exchanges in `DISCUSSION.md` with claim IDs, attribution, evidence,
-responses, decisions, and unresolved dissent. Use concise meeting notes, not a
-fictional transcript, theatrical dialogue, or invented quotations.
-
-### Round C — Build and stress-test the revised idea
-
-The facilitator synthesizes a concrete revised proposal from the debate. Compare
-the original, a minimally repaired version, and a larger pivot only when needed.
-Make tradeoffs explicit and prefer the smallest change that addresses the critical
-failure mechanisms while preserving the user's objective.
-
-Return the revised proposal to all 12 seats. Each reports remaining blockers,
-new risks introduced by repairs, conditions for proceeding, and one status:
-`ready to test`, `conditional`, or `blocked`, with reasons. These are advisory
-positions, not a majority vote that can override a fatal dependency.
-
-Allow at most two revision/review cycles. Resolve what the evidence supports;
-convert remaining disagreements into experiments, decision gates, or explicit
-blockers. Do not continue debating until artificial consensus appears.
-
-## 4. Deliver an actionable plan
+## Deliver
 
 Write `FIXED_IDEA.md` using [plan-template.md](references/plan-template.md).
-The final recommendation must follow from the discussion and review, with traceable
-risk-to-repair-to-test links. Keep detailed working records separate from the plan.
+Keep the original brief, roster, research, contributions, `DISCUSSION.md`, revisions,
+reviews, and `STATUS.md`. QUICK remains concise; DEEP keeps full traceability.
+Link actual evidence and preserve dissent, missing seats, and execution limitations.
 
-Make the plan feasible for the user's actual team, budget, and constraints. Assign
-responsible roles rather than inventing employees or commitments. Distinguish
-research estimates from quotes, measured numbers, and working assumptions.
+Recommend proceed to validation, proceed conditionally, pivot with user agreement,
+or pause. A fatal dependency cannot be outvoted. Make the plan fit the user's real
+resources; assign responsible roles, not invented employees. If no viable repair
+fits the constraints, say what would have to change.
 
-Recommend one next step: proceed to validation, proceed with stated conditions,
-pivot with the user's agreement, or pause because a critical constraint remains.
-No meeting can guarantee real-world success. A repair is a proposal until its
-relevant assumptions have been tested. If no viable version fits the user's
-constraints, say so and identify what would need to change; do not manufacture a
-positive outcome or quietly adopt a different business.
-
-In the final response, lead with the revised idea, its most important changes,
-remaining uncertainty, and the first practical action. Link the plan and discussion.
-Creating this plan does not authorize contacting people, spending money, launching
-experiments, deploying software, or implementing the proposed business.
+Lead the final response with the revised idea, main changes, remaining uncertainty,
+and first practical action; link the plan and discussion. This invocation permits
+local meeting documents and available specialist work subject to host permissions.
+It does not authorize contacting people, spending money, deploying software,
+launching experiments, or implementing the business.
