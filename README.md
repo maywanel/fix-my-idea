@@ -6,7 +6,21 @@ Inspired by the adversarial approach of the Court skill, this meeting goes beyon
 
 ## Install
 
-After this repository is published on GitHub, send this prompt to Codex:
+Run this in your project's terminal to install for Codex in the current project:
+
+```bash
+npx skills add maywanel/fix-my-idea -a codex
+```
+
+To make the skill available across projects, install globally:
+
+```bash
+npx skills add maywanel/fix-my-idea -a codex -g
+```
+
+The `-a codex` option selects Codex; `-g` selects a global installation. See the [Skills CLI documentation](https://github.com/vercel-labs/skills#install-a-skill) for prerequisites and installation options.
+
+Alternatively, ask Codex to install it:
 
 ```text
 $skill-installer install the fix-my-idea skill from the GitHub repository maywanel/fix-my-idea, using the repository root (path .) and installation name fix-my-idea.
